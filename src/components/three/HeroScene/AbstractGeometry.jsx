@@ -22,16 +22,18 @@ export default function AbstractGeometry() {
 
   // Target rotations for smooth damping
   const targetRotation = useRef(new THREE.Vector2(0, 0));
+  const time = useRef(0);
 
   // Listen for mouse movement and apply strict, front-facing idle animations
   useFrame((state, delta) => {
     if (!groupRef.current) return;
+    time.current += delta;
 
     // --- IDLE ANIMATION ---
     // Y axis: ±10 degrees (~0.17 rad)
     // X axis: ±4 degrees (~0.07 rad)
-    const idleRotY = Math.sin(state.clock.elapsedTime * 0.4) * (10 * Math.PI / 180);
-    const idleRotX = Math.cos(state.clock.elapsedTime * 0.3) * (4 * Math.PI / 180);
+    const idleRotY = Math.sin(time.current * 0.4) * (10 * Math.PI / 180);
+    const idleRotX = Math.cos(time.current * 0.3) * (4 * Math.PI / 180);
 
     // --- MOUSE PARALLAX ---
     // Limit parallax to ±10 degrees on Y, ±5 degrees on X
@@ -56,7 +58,7 @@ export default function AbstractGeometry() {
     
     // --- BREATHING SCALE ---
     // Very subtle rhythmic pulse
-    const scale = 1 + Math.sin(state.clock.elapsedTime * 1.5) * 0.015;
+    const scale = 1 + Math.sin(time.current * 1.5) * 0.015;
     groupRef.current.scale.set(scale, scale, scale);
 
     // --- PROCEDURAL SECONDARY ANIMATIONS ---

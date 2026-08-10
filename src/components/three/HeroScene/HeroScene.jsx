@@ -10,12 +10,7 @@ import GlobalTransitions from "../Canvas/GlobalTransitions";
 
 export default function HeroScene() {
   const { viewport } = useThree();
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    // Determine layout shift based on viewport width
-    setIsMobile(viewport.width < 5);
-  }, [viewport.width]);
+  const isMobile = viewport.width < 5;
 
   const heroGroupRef = useRef();
 

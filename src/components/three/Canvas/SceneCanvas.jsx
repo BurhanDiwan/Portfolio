@@ -43,6 +43,7 @@ export default function SceneCanvas() {
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDpr([1, isMobile ? 1.25 : 2]);
   }, []);
 

@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { sectionVisibility } from "@/stores/sectionVisibility";
@@ -15,7 +15,7 @@ export default function Particles({ count = 200 }) {
   const dummy   = useMemo(() => new THREE.Object3D(), []);
   const opacRef = useRef(0.15); // current rendered opacity
 
-  const particles = useMemo(() => {
+  const [particles] = useState(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
       temp.push({
@@ -31,7 +31,7 @@ export default function Particles({ count = 200 }) {
       });
     }
     return temp;
-  }, [count]);
+  });
 
   useFrame((state, delta) => {
     if (!mesh.current) return;

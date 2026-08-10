@@ -11,9 +11,12 @@ import { sectionVisibility } from "@/stores/sectionVisibility";
  */
 export default function CameraRig({ children }) {
   const group = useRef();
+  const time = useRef(0);
   
   useFrame((state, delta) => {
     if (!group.current) return;
+    
+    time.current += delta;
     
     // Normalize mouse coordinates
     const mouseX = (state.pointer.x * state.viewport.width) / 100;
@@ -32,8 +35,8 @@ export default function CameraRig({ children }) {
     
     // Imperceptible idle rotation drift (<= 0.05 deg ~ 0.00087 rad when observing wormhole)
     const driftAmp = sectionVisibility?.contact ? 0.00085 : 0.015;
-    group.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * driftAmp;
-    group.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.1) * driftAmp;
+    group.current.rotation.y = Math.sin(time.current * 0.1) * driftAmp;
+    group.current.rotation.x = Math.cos(time.current * 0.1) * driftAmp;
   });
 
   return <group ref={group}>{children}</group>;

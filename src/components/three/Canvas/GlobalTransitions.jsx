@@ -20,7 +20,7 @@ export default function GlobalTransitions({ heroGroupRef }) {
   // Use sectionVisibility.beyondCode (driven by the BeyondCodeSection's local scroll)
   // We use the global scroll event simply as a tick to sync React state without polling.
   useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange(() => {
+    const unsubscribe = scrollYProgress.on("change", () => {
       setShowCrystal(sectionVisibility.beyondCode);
     });
     return () => unsubscribe();

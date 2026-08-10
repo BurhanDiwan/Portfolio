@@ -64,7 +64,7 @@ export default function BeyondCodeSection() {
   const yForeground = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((v) => {
+    const unsubscribe = scrollYProgress.on("change", (v) => {
       sectionVisibility.beyondCodeProgress = v;
       sectionVisibility.beyondCode = v > 0.05 && v < 0.95;
     });
