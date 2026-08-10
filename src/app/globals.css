@@ -1,1 +1,58 @@
 @import "tailwindcss";
+@import "../styles/variables.css";
+@import "../styles/animations.css";
+@import "../styles/utilities.css";
+
+@theme {
+  --font-sans: var(--font-plus-jakarta), sans-serif;
+  --font-display: var(--font-outfit), sans-serif;
+  --font-mono: var(--font-space-grotesk), monospace;
+
+  /* Colors */
+  --color-background: var(--color-app-background);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-surface-raised: var(--color-surface-raised);
+  
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  
+  --color-accent: var(--color-accent);
+  --color-border: var(--color-border-default);
+  
+  /* Radii */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+:root {
+  --background: var(--color-app-background);
+  --foreground: var(--color-text-primary);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  cursor: none; /* Hide default cursor for CustomCursor */
+}
+
+/* Lenis recommended base styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
