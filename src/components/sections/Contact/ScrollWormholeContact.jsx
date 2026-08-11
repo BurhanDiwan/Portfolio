@@ -38,6 +38,7 @@ export default function ScrollWormholeContact() {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
   const [copied, setCopied] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
   const copyTimeoutRef = useRef(null);
   const lastDrawnIndex = useRef(-1);
   
@@ -63,6 +64,16 @@ export default function ScrollWormholeContact() {
       sectionVisibility.contact = false;
     };
   }, []);
+
+  // Show content as soon as the wormhole section starts scrolling into frame
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (v) => {
+      if (v > 0.03) setContentVisible(true);
+    });
+    // Also check immediately in case page was reloaded mid-scroll
+    if (scrollYProgress.get() > 0.03) setContentVisible(true);
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   useEffect(() => {
     return () => {
@@ -252,8 +263,7 @@ export default function ScrollWormholeContact() {
             className="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pb-16 md:pb-24 flex flex-col justify-end"
             variants={contentVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={contentVisible ? "visible" : "hidden"}
           >
             {/* 1. Availability Status Indicator */}
             <motion.div variants={itemVariants} className="mb-6 flex items-center">
