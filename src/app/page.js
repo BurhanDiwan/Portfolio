@@ -2,7 +2,7 @@ import SceneCanvas from "@/components/three/Canvas/SceneCanvas";
 import Hero from "@/components/sections/Hero/Hero";
 import Philosophy from "@/components/sections/Philosophy/Philosophy";
 import About from "@/components/sections/About/About";
-import ProjectsSection from "@/components/sections/projects/ProjectsSection";
+import ProjectsSection from "@/components/sections/Projects/ProjectsSection";
 import EngineeringSection from "@/components/sections/engineering/EngineeringSection";
 import BeyondCodeSection from "@/components/sections/beyond-code/BeyondCodeSection";
 import ContactSection from "@/components/sections/Contact/ContactSection";
