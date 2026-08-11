@@ -11,6 +11,7 @@ export default function ProjectMedia({ media, title, liveUrl, deviceMockup = "br
 
   // Reset to desktop view whenever project changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setViewMode("desktop");
   }, [media]);
 

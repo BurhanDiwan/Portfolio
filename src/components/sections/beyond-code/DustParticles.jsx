@@ -16,7 +16,9 @@ export default function DustParticles({ count = 40 }) {
       duration: Math.random() * 20 + 20, // 20s to 40s
       delay: Math.random() * -20, // Random start point in animation
       opacity: Math.random() * 0.3 + 0.1, // 0.1 to 0.4
+      xDrift: Math.random() * 50 - 25,
     }));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setParticles(generated);
   }, [count]);
 
@@ -36,7 +38,7 @@ export default function DustParticles({ count = 40 }) {
           animate={{
             opacity: [0, p.opacity, p.opacity, 0],
             y: [0, -100, -200], // Drift upward
-            x: [0, Math.random() * 50 - 25], // Slight horizontal drift
+            x: [0, p.xDrift], // Slight horizontal drift
           }}
           transition={{
             duration: p.duration,

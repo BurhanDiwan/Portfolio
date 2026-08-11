@@ -118,7 +118,7 @@ export default function About() {
 
           <blockquote className="relative z-10 py-6 px-6">
             <p className="text-2xl sm:text-3xl font-light italic text-white/90 font-sans leading-relaxed tracking-wide">
-              "{PROFILE_DATA.quote}"
+              &quot;{PROFILE_DATA.quote}&quot;
             </p>
           </blockquote>
           
